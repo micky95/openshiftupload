@@ -7,8 +7,7 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
 
-@WebServlet("/uploadServlet")
-@MultipartConfig(maxFileSize = 16177215)
+
 public class InsultGenerator {
     
         public Connection getConnection(){
