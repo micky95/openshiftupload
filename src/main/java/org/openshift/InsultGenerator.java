@@ -34,9 +34,9 @@ public class InsultGenerator {
                         //res=connection.toString();
                         
                         
-                        String SQL = "select sample as s from audiosamples";
+                        String SQL = "select sample from audiosamples";
                         Statement stmt = connection.createStatement();
-                        ResultSet rs = stmt.executeQuery(SQL);
+                      //  ResultSet rs = stmt.executeQuery(SQL);
                         //res= rs.toString();
                         return res;
                         //while (rs.next()) {
@@ -45,7 +45,7 @@ public class InsultGenerator {
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
-                    rs.close();
+                    //rs.close();
                     connection.close();
                 
             } catch (Exception e) {
