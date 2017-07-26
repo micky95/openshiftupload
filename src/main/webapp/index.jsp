@@ -14,7 +14,7 @@
 <h1>TEST</h1>
 <p>
 <%
-out.println(new InsultGenerator().generateInsult());
+out.println(new InsultGenerator().testConnection());
 %>
 </p>
 <form method="post" action="fileupload.jsp" enctype="multipart/form-data">
