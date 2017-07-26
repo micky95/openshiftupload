@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class InsultGenerator {
     
         public Connection getConnection(){
-            try{
+            //try{
                     String databaseURL = "jdbc:postgresql://";
                     databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
                     databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
@@ -20,10 +20,10 @@ public class InsultGenerator {
                     Connection connection = DriverManager.getConnection(databaseURL, username,
                     password);
                     return connection;
-            }
-            catch(Exception e){e.printStackTrace();
-            return null;
-            }
+            //}
+            //catch(Exception e){e.printStackTrace();
+            //return null;
+            //}
         }
 	public String testConnection() {
 	
@@ -35,6 +35,8 @@ public class InsultGenerator {
 //                    String password = System.getenv("PGPASSWORD");
 //                    Connection connection = DriverManager.getConnection(databaseURL, username,
 //                    password);
+                Connection connection=null;
+                try{
                     connection = getConnection();
                     if (connection != null) {
 			//return "tlukt!!!";
@@ -55,11 +57,13 @@ public class InsultGenerator {
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
-                    else{
-                        return "database connection error!!!";
-                    }
-                    //rs.close();
                     connection.close();
+                }
+                catch(Exception e){
+                    return "Database connection error!!"
+                }
+                    //rs.close();
+                    
                 
         }
 
