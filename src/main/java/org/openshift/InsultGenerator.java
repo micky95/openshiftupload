@@ -38,7 +38,7 @@ public class InsultGenerator {
                         Statement stmt = connection.createStatement();
     
                         ResultSet rs = stmt.executeQuery(SQL);
-                        //res= rs.toString();
+                        res= rs.toString();
                         return res;
                         //while (rs.next()) {
                         //    theInsult += rs.getString("s <br>");
