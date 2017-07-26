@@ -39,10 +39,10 @@ public class InsultGenerator {
     
                         ResultSet rs = stmt.executeQuery(SQL);
                         res= rs.toString();
-                        return res;
-                        //while (rs.next()) {
-                        //    theInsult += rs.getString("s <br>");
-                        //}
+                        //return res;
+                        while (rs.next()) {
+                            theInsult += rs.getString("s") + "<br>";
+                        }
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
