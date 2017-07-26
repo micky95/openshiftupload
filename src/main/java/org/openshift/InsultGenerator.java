@@ -60,7 +60,7 @@ public class InsultGenerator {
                     connection.close();
                 }
                 catch(Exception e){
-                    return "Database connection error!!"
+                    return "Database connection error!!";
                 }
                     //rs.close();
                     
