@@ -32,13 +32,13 @@ public class InsultGenerator {
 			//return "tlukt!!!";
                         String res = "tmacheert";
                         //res=connection.toString();
-                        //return res;
+                        
                         
                         String SQL = "select sample as s from audiosamples";
                         Statement stmt = connection.createStatement();
                         ResultSet rs = stmt.executeQuery(SQL);
-                        res= rs.toString();
-                        
+                        //res= rs.toString();
+                        return res;
                         //while (rs.next()) {
                         //    theInsult += rs.getString("s <br>");
                         //}
@@ -46,7 +46,6 @@ public class InsultGenerator {
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
                     rs.close();
-		    return res;
                     connection.close();
                 
             } catch (Exception e) {
