@@ -32,7 +32,7 @@ public class InsultGenerator {
 			//return "tlukt!!!";
                         String res = "tmacheert";
                         //res=connection.toString();
-                        return res;
+                        //return res;
                         
                         String SQL = "select sample as s from audiosamples";
                         Statement stmt = connection.createStatement();
