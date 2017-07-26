@@ -37,7 +37,7 @@ public class InsultGenerator {
                         String SQL = "select sample as s from audiosamples";
                         Statement stmt = connection.createStatement();
                         ResultSet rs = stmt.executeQuery(SQL);
-                        res= rs.toString()
+                        res= rs.toString();
                         
                         //while (rs.next()) {
                         //    theInsult += rs.getString("s <br>");
