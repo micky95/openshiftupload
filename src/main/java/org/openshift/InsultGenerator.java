@@ -27,16 +27,9 @@ public class InsultGenerator {
         }
 	public String testConnection() {
 	
-               // try{
-//                    String databaseURL = "jdbc:postgresql://";
-//                    databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
-//                    databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
-//                    String username = System.getenv("POSTGRESQL_USER");
-//                    String password = System.getenv("PGPASSWORD");
-//                    Connection connection = DriverManager.getConnection(databaseURL, username,
-//                    password);
+               
                 Connection connection=null;
-                try{
+                //try{
                     connection = getConnection();
                     if (connection != null) {
 			//return "tlukt!!!";
@@ -57,11 +50,14 @@ public class InsultGenerator {
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
+                    else{
+                    return "database connection error!";
+                    }
                     connection.close();
-                }
-                catch(Exception e){
-                    return "Database connection error!!";
-                }
+                //}
+                //catch(Exception e){
+                  //  return "Database connection error!!";
+                //}
                     //rs.close();
                 return null;
                 
