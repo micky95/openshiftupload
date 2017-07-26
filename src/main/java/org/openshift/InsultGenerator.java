@@ -63,7 +63,7 @@ public class InsultGenerator {
                     return "Database connection error!!";
                 }
                     //rs.close();
-                    
+                return null;
                 
         }
 
