@@ -34,22 +34,21 @@ public class InsultGenerator {
                         //res=connection.toString();
                         return res;
                         
-                        //String SQL = "select a.string AS first, b.string AS second, c.string AS noun from short_adjective a , long_adjective b, noun c ORDER BY random() limit 1";
-                        //Statement stmt = connection.createStatement();
-                        //ResultSet rs = stmt.executeQuery(SQL);
-                        //while (rs.next()) {
-                         //   if (vowels.indexOf(rs.getString("first").charAt(0)) == -1) {
-                          //      article = "a";
-                        //}
-                        //theInsult = String.format("Thou art %s %s %s %s!", article,
-                        //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
+                        String SQL = "select sample as s from audiosamples";
+                        Statement stmt = connection.createStatement();
+                        ResultSet rs = stmt.executeQuery(SQL);
+                        while (rs.next()) {
+                            theInsult += rs.getString("s <br>");
+                        }
+                        theInsult = String.format("Thou art %s %s %s %s!", article,
+                        rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
-                    //rs.close();
+                    rs.close();
                     connection.close();
-                //}
+                }
             } catch (Exception e) {
-                //return "Database connection problem!";
-                return e.toString();
+                return "Database connection problem!";
+                //return e.toString();
               }
             return theInsult;
         }
