@@ -41,8 +41,9 @@ public class InsultGenerator {
                         res= rs.toString();
                         //return res;
                         while (rs.next()) {
-                            theInsult += rs.getString("s") + "<br>";
+                            res += "<br>"+rs.getString("sample");
                         }
+                        return 
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
