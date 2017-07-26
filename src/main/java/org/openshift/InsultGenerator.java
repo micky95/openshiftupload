@@ -7,20 +7,12 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
 
+@WebServlet("/uploadServlet")
+@MultipartConfig(maxFileSize = 16177215)
 public class InsultGenerator {
-	public String generateInsult() {
-	//	String words[][] = {{"Artless", "Bawdy", "Beslubbering"}, {"Base-court", "Bat-fowling", "Beef-witted"}, {"Apple-john", "Baggage", "Barnacle"}};
-		String vowels = "AEIOU";
-		String article = "an";
-		String theInsult="";
-	//	String firstAdjective = words[0][new Random().nextInt(words[0].length)];
-	//	String secondAdjective = words[1][new Random().nextInt(words[1].length)];
-	//	String noun = words[2][new Random().nextInt(words[2].length)];
-	//	if (vowels.indexOf(firstAdjective.charAt(0)) == -1) {
-	//		article = "a";
-	//	}
-	//	return String.format("Thou art %s %s %s %s!", article, firstAdjective, secondAdjective, noun);
-                try{
+    
+        public Connection getConnection(){
+            try{
                     String databaseURL = "jdbc:postgresql://";
                     databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
                     databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
@@ -28,6 +20,23 @@ public class InsultGenerator {
                     String password = System.getenv("PGPASSWORD");
                     Connection connection = DriverManager.getConnection(databaseURL, username,
                     password);
+                    return connection;
+            }
+            catch(Exception e){e.printStackTrace();
+            return null;
+            }
+        }
+	public String testConnection() {
+	
+               // try{
+//                    String databaseURL = "jdbc:postgresql://";
+//                    databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
+//                    databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
+//                    String username = System.getenv("POSTGRESQL_USER");
+//                    String password = System.getenv("PGPASSWORD");
+//                    Connection connection = DriverManager.getConnection(databaseURL, username,
+//                    password);
+                    connection = getConnection();
                     if (connection != null) {
 			//return "tlukt!!!";
                         String res = "tmacheert";
@@ -47,14 +56,12 @@ public class InsultGenerator {
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
+                    else{
+                        return "database connection error!!!";
+                    }
                     //rs.close();
                     connection.close();
                 
-            } catch (Exception e) {
-                return "Database connection problem!";
-                //return e.toString();
-              }
-            return theInsult;
         }
 
 }
