@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class InsultGenerator {
     
         public Connection getConnection(){
-            //try{
+            try{
                     String databaseURL = "jdbc:postgresql://";
                     databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
                     databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
@@ -20,10 +20,10 @@ public class InsultGenerator {
                     Connection connection = DriverManager.getConnection(databaseURL, username,
                     password);
                     return connection;
-            //}
-            //catch(Exception e){e.printStackTrace();
-            //return null;
-            //}
+            }
+            catch(Exception e){e.printStackTrace();
+            return null;
+            }
         }
 	public String testConnection() {
 	
