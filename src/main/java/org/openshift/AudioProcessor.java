@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 
-public class InsultGenerator {
+public class AudioProcessor {
     
         public Connection getConnection(){
             try{

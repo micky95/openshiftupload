@@ -5,7 +5,7 @@
     <groupId>org.openshift</groupId>
     <packaging>war</packaging>
     <version>1.0</version>
-    <name>InsultApp</name>
+    <name>OpenshiftUpload</name>
   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,5 +62,5 @@
       </build>
     </profile>
   </profiles>
-	<artifactId>InsultApp</artifactId>
+	<artifactId>OpenshiftUpload</artifactId>
 </project>
