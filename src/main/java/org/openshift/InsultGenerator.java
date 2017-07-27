@@ -37,16 +37,16 @@ public class InsultGenerator {
                     if (connection != null) {
 			//return "tlukt!!!";
                         res += " tmacheert ";
-                        res+=connection.toString();
+                        //res+=connection.toString();
                         
-                        
-                        String SQL = "insert into audiosamples (sample) values (?)";
-                        PreparedStatement st= connection.prepareStatement(SQL);
-                        st.setInt(1, 1234568);
-                        st.execute();
+                        return res;
+                        //String SQL = "insert into audiosamples (sample) values (?)";
+                        //PreparedStatement st= connection.prepareStatement(SQL);
+                        //st.setInt(1, 1234568);
+                        //st.execute();
                         //Statement stmt = connection.createStatement();
                         //stmt.executeQuery(SQL);
-                        return res;
+                        //return res;
                         //theInsult = String.format("Thou art %s %s %s %s!", article,
                         //rs.getString("first"), rs.getString("second"), rs.getString("noun"));
                     }
