@@ -54,7 +54,7 @@ public class InsultGenerator {
                 }
                 catch(Exception e){
                     res += "Database connection error!!" + "<br>";
-                    res += e.printStackTrace();
+  
                 }
                     //rs.close();
                 return res;
