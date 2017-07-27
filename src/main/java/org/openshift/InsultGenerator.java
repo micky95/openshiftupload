@@ -53,10 +53,11 @@ public class InsultGenerator {
                     connection.close();
                 }
                 catch(Exception e){
-                    return "Database connection error!!";
+                    res += "Database connection error!!" + "<br>";
+                    res += e.printStackTrace();
                 }
                     //rs.close();
-                return null;
+                return res;
                 
         }
 
