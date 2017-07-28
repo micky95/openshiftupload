@@ -16,7 +16,7 @@
         <div id="result">
             <h3>${requestScope["message"]}
                 <br>
-                
+                ${requestScope["file"]}
             </h3>
         </div>
     </body>
