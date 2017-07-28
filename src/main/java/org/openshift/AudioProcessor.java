@@ -42,7 +42,7 @@ public class AudioProcessor {
                         String SQL = "insert into audiosamples (sample) values (?)";
                         PreparedStatement st= connection.prepareStatement(SQL);
                         st.setInt(1, 1234568);
-                        st.execute();
+                        //st.execute();
                         //Statement stmt = connection.createStatement();
                         //stmt.executeQuery(SQL);
                         return res;

@@ -14,7 +14,10 @@
     </head>
     <body>
         <div id="result">
-            <h3>${requestScope["message"]}</h3>
+            <h3>${requestScope["message"]}
+                <br>
+                
+            </h3>
         </div>
     </body>
 </html>
