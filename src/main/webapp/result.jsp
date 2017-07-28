@@ -21,7 +21,7 @@
                 ${requestScope["data"]}
                 <br>
                 <%
-                out.println(%>${requestScope["data"]}<%);
+                out.println(request.getAttribute("data"));
                 %>
             </h3>
         </div>
