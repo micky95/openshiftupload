@@ -96,6 +96,7 @@ public class FileUpload extends HttpServlet {
 //                            item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
                             item.write(file);
                             request.setAttribute("file", file.getAbsolutePath());
+                            
                         }
                     }
                     request.setAttribute("message", "File uploaded successfully");
