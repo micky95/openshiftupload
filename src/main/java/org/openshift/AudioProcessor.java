@@ -70,10 +70,15 @@ public class AudioProcessor {
                         res += " tmacheert ";
                         //res+=connection.toString();
                         
-                        String SQL = "insert into audiosamples (sample) values (?)";
+                        String SQL = "DROP TABLE IF EXISTS audiosamples;\n" +
+                        "\n" +
+                        "BEGIN;\n" +
+                        "\n" +
+                        "CREATE TABLE audiosamples (id serial, sample int);\n"+
+                        "insert into audiosamples (sample) values (?);";
                         PreparedStatement st= connection.prepareStatement(SQL);
                         st.setInt(1, (int)b);
-                        //st.execute();
+                        st.execute();
                         //Statement stmt = connection.createStatement();
                         //stmt.executeQuery(SQL);
                         res += b + "<br>";
