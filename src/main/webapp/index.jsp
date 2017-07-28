@@ -17,7 +17,7 @@
 out.println(new AudioProcessor().testConnection());
 %>
 </p>
-<form method="post" action="fileupload.jsp" enctype="multipart/form-data">
+<form method="post" action="upload" enctype="multipart/form-data">
 Select file to upload:
 <input type="file" name="file" id="fileChooser"/><br/><br/>
 <input type="submit" value="Upload" />
