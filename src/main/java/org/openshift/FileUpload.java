@@ -92,7 +92,9 @@ public class FileUpload extends HttpServlet {
                     for (FileItem item: multiparts){
                         if(!item.isFormField()){
                             String name = new File(item.getName()).getName();
-                            item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
+                            File file = File.createTempFile("upload-", ".wav");
+//                            item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
+                            item.write(file);
                         }
                     }
                     request.setAttribute("message", "File uploaded successfully");
