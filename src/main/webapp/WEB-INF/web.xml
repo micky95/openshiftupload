@@ -6,7 +6,7 @@
 	 version="3.1">
     <servlet>
         <servlet-name>FileUpload</servlet-name>
-        <servlet-class>FileUpload</servlet-class>
+        <servlet-class>org.openshift.FileUpload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FileUpload</servlet-name>
