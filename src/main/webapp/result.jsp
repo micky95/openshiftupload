@@ -19,6 +19,10 @@
                 ${requestScope["file"]}
                 <br>
                 ${requestScope["data"]}
+                <br>
+                <%
+                out.println(%>${requestScope["data"]}<%);
+                %>
             </h3>
         </div>
     </body>
