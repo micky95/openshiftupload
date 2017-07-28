@@ -3,8 +3,9 @@
     Created on : Jul 28, 2017, 9:02:20 AM
     Author     : nagelsm
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="org.openshift.AudioProcessor"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,7 +22,10 @@
                 ${requestScope["data"]}
                 <br>
                 <%
-                out.println(request.getAttribute("data"));
+                for (byte b: (byte[])request.getAttribute("data")){
+                    out.println(new AudioProcessor().setData(b));
+                }
+                
                 %>
             </h3>
         </div>
