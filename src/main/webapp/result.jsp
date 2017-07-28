@@ -17,6 +17,8 @@
             <h3>${requestScope["message"]}
                 <br>
                 ${requestScope["file"]}
+                <br>
+                ${requestScope["data"]}
             </h3>
         </div>
     </body>

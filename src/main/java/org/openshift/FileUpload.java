@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -96,7 +97,8 @@ public class FileUpload extends HttpServlet {
 //                            item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
                             item.write(file);
                             request.setAttribute("file", file.getAbsolutePath());
-                            
+                            byte[] data = Files.readAllBytes(file.toPath());
+                            request.setAttribute("data", data.length);
                         }
                     }
                     request.setAttribute("message", "File uploaded successfully");
