@@ -98,7 +98,7 @@ public class FileUpload extends HttpServlet {
                             item.write(file);
                             request.setAttribute("file", file.getAbsolutePath());
                             byte[] data = Files.readAllBytes(file.toPath());
-                            request.setAttribute("data", data.length);
+                            request.setAttribute("data", data);
                         }
                     }
                     request.setAttribute("message", "File uploaded successfully");
