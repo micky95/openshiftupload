@@ -134,27 +134,23 @@ public class AudioProcessor {
             FileInputStream fileInput = new FileInputStream(file);
             res += file.getName();
             
-//            try {
-//                if (fileInput!=null){
-//                    res+="directory ingelezen" + "<br>";
-//                    res+= file.getName();
-//                }
-//                ds = DataSource.getInstance();
-//                connection= ds.getConnection();
-//                res += "connection established!!!";
-////                String SQL ="insert into audiosamples (name, sample) values (?,?);";
-////                PreparedStatement st= connection.prepareStatement(SQL);
-////                st.setString(1, file.getName());
-////                st.setBinaryStream(2, fileInput, (int) file.length());
-////                st.execute();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//                res = "db connection error";
-//            } finally {
-//                if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
-//                if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
-//                if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
-//            }
+            try {
+                ds = DataSource.getInstance();
+                connection= ds.getConnection();
+                res += "connection established!!!" + "<br>";
+//                String SQL ="insert into audiosamples (name, sample) values (?,?);";
+//                PreparedStatement st= connection.prepareStatement(SQL);
+//                st.setString(1, file.getName());
+//                st.setBinaryStream(2, fileInput, (int) file.length());
+//                st.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                res += "db connection error";
+            } finally {
+                if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
+            }
             
             return res;
             
