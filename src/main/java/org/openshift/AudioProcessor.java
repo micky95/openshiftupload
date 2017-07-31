@@ -2,6 +2,8 @@ package org.openshift;
 
 import java.beans.PropertyVetoException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
@@ -11,7 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.openshift.DataSource;
+import java.sql.Blob;
+import javax.sql.rowset.serial.SerialBlob;
 
 
 public class AudioProcessor {
@@ -110,16 +113,51 @@ public class AudioProcessor {
                     //rs.close();
                 return res;
         }
-        public String getFile(){
+        public String getFile() throws FileNotFoundException, IOException, PropertyVetoException{
+            DataSource ds=null;
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            
             String path="Music/songs";
             File dir = new File(path);
             File[] files = dir.listFiles();
             String res = "";
-            for (File f: files){
-            
-                res+= "<br>" + f.toString();
+            if (dir.canRead()){
+                res+="directory ingelezen" + "<br>";
             }
+//            for (File f: files){
+//            
+//                res+= "<br>" + f.toString();
+//            }
+            Random rand = new Random();
+            File file = files[rand.nextInt(files.length)];
+            FileInputStream fileInput = new FileInputStream(file);
+            
+            try {
+                if (fileInput!=null){
+                    res+="directory ingelezen" + "<br>";
+                    res+= file.getName();
+                }
+                ds = DataSource.getInstance();
+                connection= ds.getConnection();
+                String SQL ="insert into audiosamples (name, sample) values (?,?);";
+                PreparedStatement st= connection.prepareStatement(SQL);
+                st.setString(1, file.getName());
+                st.setBinaryStream(2, fileInput, (int) file.length());
+                st.execute();
+                return res;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                res = "db connection error";
+            } finally {
+                if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
+            }
+            
             return res;
+            
             
         }
 
