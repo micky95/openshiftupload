@@ -14,7 +14,8 @@
 <h1>DB UPLOAD TEST</h1>
 <p>
 <%
-    out.println(new AudioProcessor().checkConnection());
+    //out.println(new AudioProcessor().checkConnection());
+    out.println(new AudioProcessor().getFile());
 %>
 </p>
 <form method="post" action="FileUpload" enctype="multipart/form-data">

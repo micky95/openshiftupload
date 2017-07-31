@@ -1,6 +1,7 @@
 package org.openshift;
 
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -108,6 +109,18 @@ public class AudioProcessor {
                 }
                     //rs.close();
                 return res;
+        }
+        public String getFile(){
+            String path="Music/songs";
+            File dir = new File(path);
+            File[] files = dir.listFiles();
+            String res = "";
+            for (File f: files){
+            
+                res+= "<br>" + f.toString();
+            }
+            return res;
+            
         }
 
 }
