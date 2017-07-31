@@ -132,20 +132,21 @@ public class AudioProcessor {
             Random rand = new Random();
             File file = files[rand.nextInt(files.length)];
             FileInputStream fileInput = new FileInputStream(file);
-            res += file.getName();
+            res += file.getName() + "<br>";
             
             try {
                 ds = DataSource.getInstance();
                 connection= ds.getConnection();
                 res += "connection established!!!" + "<br>";
-//                String SQL ="insert into audiosamples (name, sample) values (?,?);";
-//                PreparedStatement st= connection.prepareStatement(SQL);
-//                st.setString(1, file.getName());
-//                st.setBinaryStream(2, fileInput, (int) file.length());
-//                st.execute();
+                
+                String SQL ="insert into audiosamples (name, sample) values (?,?);";
+                PreparedStatement st= connection.prepareStatement(SQL);
+                st.setString(1, file.getName());
+                st.setBinaryStream(2, fileInput, (int) file.length());
+                st.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
-                res += "db connection error";
+                res = "db connection error";
             } finally {
                 if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
                 if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
