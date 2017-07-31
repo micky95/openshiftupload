@@ -142,11 +142,10 @@ public class AudioProcessor {
                 String SQL ="insert into audiosamples (name, sample) values (?,?);";
                 PreparedStatement st= connection.prepareStatement(SQL);
                 st.setString(1, file.getName());
-                st.setBinaryStream(2, fileInput, (int) file.length());
+                st.setBlob(2, fileInput);
                 st.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
-                res = "db connection error";
+                res = "db connection error: " + e;
             } finally {
                 if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
                 if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
