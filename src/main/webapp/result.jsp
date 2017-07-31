@@ -23,8 +23,8 @@
                 <br>
                 <%
                 for (byte b: (byte[])request.getAttribute("data")){
-                    //out.println(new AudioProcessor().setData(b));
-                    out.println(new AudioProcessor().setDPData(b));
+                    out.println(new AudioProcessor().setData(b));
+                    //out.println(new AudioProcessor().setDPData(b));
                 }
                 
                 %>
