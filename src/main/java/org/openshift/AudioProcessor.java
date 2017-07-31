@@ -55,11 +55,13 @@ public class AudioProcessor {
         }
         public String setDPData(byte b) throws IOException, PropertyVetoException{
             String res="";
+            DataSource ds=null;
             Connection connection = null;
             Statement statement = null;
             ResultSet resultSet = null;
             try {
-                connection = DataSource.getInstance().getConnection();
+                ds = DataSource.getInstance();
+                connection= ds.getConnection();
                 String SQL ="insert into audiosamples (sample) values (?);";
                 PreparedStatement st= connection.prepareStatement(SQL);
                 st.setInt(1, (int)b);
