@@ -1,11 +1,14 @@
 package org.openshift;
 
+import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.util.Random;
 
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 
@@ -48,6 +51,29 @@ public class AudioProcessor {
                     //rs.close();
                 return res;
                 
+        }
+        public String setDPData(byte b) throws IOException, PropertyVetoException{
+            String res="";
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            try {
+                connection = DataSource.getInstance().getConnection();
+                String SQL ="insert into audiosamples (sample) values (?);";
+                PreparedStatement st= connection.prepareStatement(SQL);
+                st.setInt(1, (int)b);
+                st.execute();
+                res += b + "<br>";
+                return res;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                res = "db connection error";
+            } finally {
+                if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
+            }
+            return res;
         }
         public String setData(byte b){
             String res="";
