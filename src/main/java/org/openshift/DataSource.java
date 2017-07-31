@@ -17,14 +17,34 @@ import org.apache.commons.dbcp.BasicDataSource;
  * @author nagelsm
  */
 public class DataSource {
-    static JdbcConnectionPool pool = new JdbcConnectionPool();
-   
-    public static Connection getConnection() throws ClassNotFoundException, SQLException{
-        Connection connection = pool.getConnectionFromPool();
-        return connection;
+    private static DataSource datasource;
+    private BasicDataSource ds;
+    
+    private DataSource() throws IOException, SQLException, PropertyVetoException {
+        ds = new BasicDataSource();
+        ds.setDriverClassName("org.postgresql.Driver");
+        ds.setUsername(System.getenv("POSTGRESQL_USER"));
+        ds.setPassword(System.getenv("PGPASSWORD"));
+        ds.setUrl("jdbc:postgresql://" + System.getenv("POSTGRESQL_SERVICE_HOST")+"/" 
+                    + System.getenv("POSTGRESQL_DATABASE"));
+       
+     // the settings below are optional -- dbcp can work with defaults
+        ds.setMinIdle(5);
+        ds.setMaxIdle(20);
+        ds.setMaxOpenPreparedStatements(180);
+
     }
 
-    public static void returnConnection(Connection connection) {
-        pool.returnConnectionToPool(connection);
+    public static DataSource getInstance() throws IOException, SQLException, PropertyVetoException {
+        if (datasource == null) {
+            datasource = new DataSource();
+            return datasource;
+        } else {
+            return datasource;
+        }
+    }
+
+    public Connection getConnection() throws SQLException {
+        return this.ds.getConnection();
     }
 }

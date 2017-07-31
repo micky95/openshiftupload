@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.openshift.DataSource;
 
 
 public class AudioProcessor {
@@ -52,13 +53,15 @@ public class AudioProcessor {
                 return res;
                 
         }
-        public String setDPData(byte b) throws IOException, PropertyVetoException, ClassNotFoundException{
+        public String setDPData(byte b) throws IOException, PropertyVetoException{
             String res="";
+            DataSource ds=null;
             Connection connection = null;
             Statement statement = null;
             ResultSet resultSet = null;
             try {
-                connection = DataSource.getConnection();
+                ds = DataSource.getInstance();
+                connection= ds.getConnection();
                 String SQL ="insert into audiosamples (sample) values (?);";
                 PreparedStatement st= connection.prepareStatement(SQL);
                 st.setInt(1, (int)b);
