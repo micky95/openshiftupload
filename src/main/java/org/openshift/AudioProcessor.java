@@ -115,7 +115,7 @@ public class AudioProcessor {
         public String getFile() throws FileNotFoundException, IOException, PropertyVetoException{
             DataSource ds=null;
             Connection connection = null;
-            Statement statement = null;
+            PreparedStatement st = null;
             ResultSet resultSet = null;
             
             String path="Music/songs";
@@ -140,15 +140,15 @@ public class AudioProcessor {
                 res += "connection established!!!" + "<br>";
                 
                 String SQL ="insert into audiosamples (name, sample) values (?,?);";
-                PreparedStatement st= connection.prepareStatement(SQL);
+                st= connection.prepareStatement(SQL);
                 st.setString(1, file.getName());
-                st.setBlob(2, fileInput);
-                //st.execute();
+                st.setBinaryStream(2, fileInput, (int) file.length());
+                st.execute();
             } catch (SQLException e) {
                 res = "db connection error: " + e;
             } finally {
                 if (resultSet != null) try { resultSet.close(); } catch (SQLException e) {e.printStackTrace();}
-                if (statement != null) try { statement.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (st != null) try { st.close(); } catch (SQLException e) {e.printStackTrace();}
                 if (connection != null) try { connection.close(); } catch (SQLException e) {e.printStackTrace();}
             }
             
