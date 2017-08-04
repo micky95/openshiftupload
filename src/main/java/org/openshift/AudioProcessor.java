@@ -143,7 +143,7 @@ public class AudioProcessor {
                 PreparedStatement st= connection.prepareStatement(SQL);
                 st.setString(1, file.getName());
                 st.setBlob(2, fileInput);
-                st.execute();
+                //st.execute();
             } catch (SQLException e) {
                 res = "db connection error: " + e;
             } finally {
